@@ -96,52 +96,52 @@ export default function Home() {
 
           <div className="grid md:grid-cols-3 gap-8">
             {/* Üretim Hizmetleri */}
-            <div className="text-center">
-              <div className="relative h-[250px] mb-6 rounded-lg overflow-hidden shadow-lg">
+            <div className="text-center border border-gray-200 shadow-md p-6 rounded-lg">
+              <div className="relative h-[250px] mb-6 rounded-lg overflow-hidden shadow-lg group">
                 <Image
                   src="/assets/images/production.jpg"
                   alt="Üretim Hizmetleri"
                   fill
-                  className="object-cover"
+                  className="object-cover group-hover:scale-105 transition-transform duration-300 ease-in-out"
                   sizes="(max-width: 768px) 100vw, 33vw"
                   quality={90}
                 />
               </div>
-              <h3 className="text-xl md:text-2xl font-bold text-gray-800">
+              <h3 className="text-xl md:text-2xl font-semibold text-gray-800">
                 Üretim Hizmetleri
               </h3>
             </div>
 
             {/* Montaj Hizmetleri */}
-            <div className="text-center">
-              <div className="relative h-[250px] mb-6 rounded-lg overflow-hidden shadow-lg">
+            <div className="text-center border border-gray-200 shadow-md p-6 rounded-lg">
+              <div className="relative h-[250px] mb-6 rounded-lg overflow-hidden shadow-lg group">
                 <Image
                   src="/assets/images/assembly.jpg"
                   alt="Montaj Hizmetleri"
                   fill
-                  className="object-cover"
+                  className="object-cover group-hover:scale-105 transition-transform duration-300 ease-in-out"
                   sizes="(max-width: 768px) 100vw, 33vw"
                   quality={90}
                 />
               </div>
-              <h3 className="text-xl md:text-2xl font-bold text-gray-800">
+              <h3 className="text-xl md:text-2xl font-semibold text-gray-800">
                 Montaj Hizmetleri
               </h3>
             </div>
 
             {/* Test Sistemleri Hizmetleri */}
-            <div className="text-center">
-              <div className="relative h-[250px] mb-6 rounded-lg overflow-hidden shadow-lg">
+            <div className="text-center border border-gray-200 shadow-md p-6 rounded-lg">
+              <div className="relative h-[250px] mb-6 rounded-lg overflow-hidden shadow-lg group">
                 <Image
                   src="/assets/images/testsystem.jpg"
                   alt="Test Sistemleri Hizmetleri"
                   fill
-                  className="object-cover"
+                  className="object-cover group-hover:scale-105 transition-transform duration-300 ease-in-out"
                   sizes="(max-width: 768px) 100vw, 33vw"
                   quality={90}
                 />
               </div>
-              <h3 className="text-xl md:text-2xl font-bold text-gray-800">
+              <h3 className="text-xl md:text-2xl font-semibold text-gray-800">
                 Test Sistemleri Hizmetleri
               </h3>
             </div>
