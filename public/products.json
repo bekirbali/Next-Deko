@@ -1,0 +1,14 @@
+[
+  {
+    "id": 1,
+    "name": "MCB",
+    "description": "Miniature Circuit Breaker",
+    "image": "/assets/images/products/mcb.jpg"
+  },
+  {
+    "id": 2,
+    "name": "RCCB",
+    "description": "Residual Current Circuit Breaker",
+    "image": "/assets/images/products/rccb.jpg"
+  }
+]

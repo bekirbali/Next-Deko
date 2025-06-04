@@ -72,7 +72,7 @@ export default function GalleryModal({
       {/* Close button */}
       <button
         onClick={onClose} // This button's specific action
-        className="absolute top-4 right-4 z-[60] text-white bg-black bg-opacity-50 rounded-full p-2 hover:bg-opacity-70 transition-all duration-200 shadow-lg"
+        className="absolute top-4 right-4 z-[60] text-white bg-black bg-opacity-50 rounded-full p-2 hover:bg-opacity-70 transition-all duration-200 shadow-lg cursor-pointer"
         aria-label="Close modal"
       >
         <svg
@@ -94,7 +94,7 @@ export default function GalleryModal({
       {/* Navigation buttons */}
       <button
         onClick={navigatePrev} // This button's specific action
-        className="absolute left-4 top-1/2 -translate-y-1/2 z-[60] text-white bg-black bg-opacity-50 rounded-full p-2 hover:bg-opacity-70 transition-all duration-200 shadow-lg"
+        className="absolute left-4 top-1/2 -translate-y-1/2 z-[60] text-white bg-black bg-opacity-50 rounded-full p-2 hover:bg-opacity-70 transition-all duration-200 shadow-lg cursor-pointer"
         aria-label="Previous image"
       >
         <svg
@@ -115,7 +115,7 @@ export default function GalleryModal({
 
       <button
         onClick={navigateNext} // This button's specific action
-        className="absolute right-4 top-1/2 -translate-y-1/2 z-[60] text-white bg-black bg-opacity-50 rounded-full p-2 hover:bg-opacity-70 transition-all duration-200 shadow-lg"
+        className="absolute right-4 top-1/2 -translate-y-1/2 z-[60] text-white bg-black bg-opacity-50 rounded-full p-2 hover:bg-opacity-70 transition-all duration-200 shadow-lg cursor-pointer"
         aria-label="Next image"
       >
         <svg
@@ -136,7 +136,7 @@ export default function GalleryModal({
 
       {/* Image container - clicks inside here should NOT close the modal */}
       <div
-        className="relative w-full max-w-5xl h-[80vh] max-h-[80vh] rounded-lg overflow-hidden shadow-2xl"
+        className="relative w-full max-w-2xl h-[80vh] max-h-[80vh] rounded-lg overflow-hidden shadow-2xl"
         onClick={(e) => e.stopPropagation()} // Prevent clicks from bubbling to the backdrop
       >
         <Image
@@ -144,7 +144,7 @@ export default function GalleryModal({
           alt={currentImage.alt}
           fill
           className="object-cover"
-          sizes="(max-width: 768px) 100vw, 80vw"
+          sizes="(max-width: 768px) 90vw, 672px"
           priority
         />
         <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 bg-black bg-opacity-60 text-white px-4 py-2 rounded-full text-sm shadow-lg">
