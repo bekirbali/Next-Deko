@@ -4,8 +4,8 @@ import Image from "next/image";
 import { useState, useEffect, useRef } from "react";
 
 export default function ExperienceSection() {
-  const [activeTab, setActiveTab] = useState("Vision"); // State for active tab
-  const [fixedHeight, setFixedHeight] = useState("auto"); // State for fixed height
+  const [activeTab, setActiveTab] = useState("Mission"); // State for active tab
+  const [fixedHeight, setFixedHeight] = useState("180px"); // State for fixed height, changed to 400px
   const contentContainerRef = useRef(null); // Ref for the content container
 
   const tabContent = {
@@ -26,12 +26,12 @@ Sustainability
 R&D`,
   };
 
-  useEffect(() => {
-    // Set the fixed height based on the Vision tab's content on mount
-    if (contentContainerRef.current && activeTab === "Vision") {
-      setFixedHeight(`${contentContainerRef.current.scrollHeight}px`);
-    }
-  }, []); // Run once on mount, activeTab is already Vision by default
+  // useEffect(() => {
+  //   // Set the fixed height based on the Vision tab's content on mount
+  //   if (contentContainerRef.current && activeTab === "Vision") {
+  //     setFixedHeight(`${contentContainerRef.current.scrollHeight}px`);
+  //   }
+  // }, []); // Run once on mount, activeTab is already Vision by default
 
   return (
     <section className="py-16 bg-white">
