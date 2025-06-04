@@ -1,7 +1,36 @@
+"use client";
 import HeroSlider from "./components/Slider";
 import Image from "next/image";
+import NewsSlider from "./components/NewsSlider";
+import ExperienceSection from "./components/ExperienceSection";
+import { useEffect, useState } from "react";
 
 export default function Home() {
+  // Placeholder news data
+  const newsData = [
+    {
+      id: 1,
+      imageSrc: "/assets/images/speciality.jpg", // Placeholder image
+      altText: "News 1 Placeholder",
+      title: "Exciting Product Launch Announced",
+      date: "October 26, 2023",
+      description:
+        "We are thrilled to announce the upcoming launch of our new innovative product line, set to revolutionize the industry...",
+      link: "#",
+    },
+    {
+      id: 2,
+      imageSrc: "/assets/images/production.jpg", // Placeholder image
+      altText: "News 2 Placeholder",
+      title: "DEKO Elektrik Expands to New Markets",
+      date: "October 20, 2023",
+      description:
+        "As part of our growth strategy, DEKO Elektrik is proud to announce its expansion into new international markets...",
+      link: "#",
+    },
+    // Add more news items here if needed
+  ];
+
   return (
     <div>
       {/* Slider at the top */}
@@ -31,14 +60,14 @@ export default function Home() {
             <div className="space-y-4">
               <div>
                 <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
-                  27 Yıllık Uzmanlığımız ile Güvenilir Koruma
+                  Professional approach with our 27 years of expertise!
                 </h2>
                 <p className="text-lg text-gray-600 leading-relaxed">
-                  Türkiye'nin yerli sermayeli otomatik sigorta ve kaçak akım
-                  koruma şalterleri üreticisi olan Deko, günümüz teknolojisini
-                  ve yenilikleri uzmanlığı ile birleştirerek; müşterilerine
-                  yüksek performanslı, kaliteli ürünler ve ekonomik çözümler
-                  sunmaktadır.
+                  Professional approach with our 27 years of expertise! Deko,
+                  Turkey's domestically owned automatic fuse and residual
+                  current circuit breakers manufacturer, combines today's
+                  technology and innovations with its expertise; offers its
+                  customers high performance.
                 </p>
               </div>
 
@@ -56,15 +85,15 @@ export default function Home() {
       {/* YouTube Video Section */}
       <section className="py-16 bg-white">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-8">
+          {/* <div className="text-center mb-8">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
-              Kurumsal Tanıtım Videosu
+              Company Introduction Video
             </h2>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              DEKO Elektrik'in Türkiye'nin LV endüstrisindeki yükselen yıldızı
-              olma yolculuğunu keşfedin
+              Discover the journey of DEKO Elektrik, the rising star of Turkey's
+              LV industry
             </p>
-          </div>
+          </div> */}
 
           <div className="max-w-5xl mx-auto">
             <div
@@ -89,8 +118,8 @@ export default function Home() {
       <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
-              Çözüm Merkezi
+            <h2 className="text-3xl md:text-5xl font-bold text-gray-800 mb-4">
+              Solutions
             </h2>
           </div>
 
@@ -108,7 +137,7 @@ export default function Home() {
                 />
               </div>
               <h3 className="text-xl md:text-2xl font-semibold text-gray-800">
-                Üretim Hizmetleri
+                OEM Production
               </h3>
             </div>
 
@@ -125,7 +154,7 @@ export default function Home() {
                 />
               </div>
               <h3 className="text-xl md:text-2xl font-semibold text-gray-800">
-                Montaj Hizmetleri
+                Turnkey Manufacturing Lines
               </h3>
             </div>
 
@@ -142,7 +171,7 @@ export default function Home() {
                 />
               </div>
               <h3 className="text-xl md:text-2xl font-semibold text-gray-800">
-                Test Sistemleri Hizmetleri
+                Assembly and Testing System
               </h3>
             </div>
           </div>
@@ -167,46 +196,46 @@ export default function Home() {
         {/* Content */}
         <div className="relative z-10 container mx-auto px-4">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-              DEKO'nun <span className="text-yellow-400">Dinamikleri</span>
+            <h2 className="text-3xl md:text-6xl font-bold text-white mb-4">
+              Our <span className="text-yellow-400">Dynamics</span>
             </h2>
             <p className="text-lg text-gray-200 max-w-3xl mx-auto">
-              Dinamiklerimizi sağlam temellerle oluşturuyoruz. Uzmanlığın,
-              yeniliğin ve kalitenin gücüne olan inancımız ile uluslararası
-              alanda, sektördeki yerli firmaların öncüsü olmayı hedefliyoruz.
+              We build our dynamics on solid basis. With our belief in the power
+              of expertise, innovativeness and quality, we aim to be the pioneer
+              of domestic companies in the international arena.
             </p>
           </div>
 
           <div className="grid grid-cols-2 md:grid-cols-3 gap-8 md:gap-12">
-            {/* Yerli ve Milli Sermaye */}
+            {/* Flexibility */}
             <div className="text-center group">
               <div className="w-20 h-20 md:w-24 md:h-24 mx-auto mb-4 p-4 bg-white/10 backdrop-blur-sm rounded-xl group-hover:bg-white/20 transition-all duration-300">
                 <Image
                   src="/assets/images/dynamics/1.svg"
-                  alt="Yerli ve Milli Sermaye"
+                  alt="Flexibility"
                   width={80}
                   height={80}
                   className="w-full h-full filter brightness-0 invert"
                 />
               </div>
               <h3 className="text-lg md:text-xl font-semibold text-white">
-                Yerli ve Milli Sermaye
+                Flexibility
               </h3>
             </div>
 
-            {/* İnovasyon */}
+            {/* Innovation */}
             <div className="text-center group">
               <div className="w-20 h-20 md:w-24 md:h-24 mx-auto mb-4 p-4 bg-white/10 backdrop-blur-sm rounded-xl group-hover:bg-white/20 transition-all duration-300">
                 <Image
                   src="/assets/images/dynamics/2.svg"
-                  alt="İnovasyon"
+                  alt="Innovation"
                   width={80}
                   height={80}
                   className="w-full h-full filter brightness-0 invert"
                 />
               </div>
               <h3 className="text-lg md:text-xl font-semibold text-white">
-                İnovasyon
+                Innovation
               </h3>
             </div>
 
@@ -215,67 +244,168 @@ export default function Home() {
               <div className="w-20 h-20 md:w-24 md:h-24 mx-auto mb-4 p-4 bg-white/10 backdrop-blur-sm rounded-xl group-hover:bg-white/20 transition-all duration-300">
                 <Image
                   src="/assets/images/dynamics/3.svg"
-                  alt="Ar-Ge"
+                  alt="R&D"
                   width={80}
                   height={80}
                   className="w-full h-full filter brightness-0 invert"
                 />
               </div>
               <h3 className="text-lg md:text-xl font-semibold text-white">
-                Ar-Ge
+                R&D
               </h3>
             </div>
 
-            {/* Kalite */}
+            {/* Quality */}
             <div className="text-center group">
               <div className="w-20 h-20 md:w-24 md:h-24 mx-auto mb-4 p-4 bg-white/10 backdrop-blur-sm rounded-xl group-hover:bg-white/20 transition-all duration-300">
                 <Image
                   src="/assets/images/dynamics/4.svg"
-                  alt="Kalite"
+                  alt="Quality"
                   width={80}
                   height={80}
                   className="w-full h-full filter brightness-0 invert"
                 />
               </div>
               <h3 className="text-lg md:text-xl font-semibold text-white">
-                Kalite
+                Quality
               </h3>
             </div>
 
-            {/* Sürdürülebilirlik */}
+            {/* Sustainability */}
             <div className="text-center group">
               <div className="w-20 h-20 md:w-24 md:h-24 mx-auto mb-4 p-4 bg-white/10 backdrop-blur-sm rounded-xl group-hover:bg-white/20 transition-all duration-300">
                 <Image
                   src="/assets/images/dynamics/5.svg"
-                  alt="Sürdürülebilirlik"
+                  alt="Sustainability"
                   width={80}
                   height={80}
                   className="w-full h-full filter brightness-0 invert"
                 />
               </div>
               <h3 className="text-lg md:text-xl font-semibold text-white">
-                Sürdürülebilirlik
+                Sustainability
               </h3>
             </div>
 
-            {/* Müşteri Memnuniyeti */}
+            {/* Customer Delight */}
             <div className="text-center group">
               <div className="w-20 h-20 md:w-24 md:h-24 mx-auto mb-4 p-4 bg-white/10 backdrop-blur-sm rounded-xl group-hover:bg-white/20 transition-all duration-300">
                 <Image
                   src="/assets/images/dynamics/6.svg"
-                  alt="Müşteri Memnuniyeti"
+                  alt="Customer Delight"
                   width={80}
                   height={80}
                   className="w-full h-full filter brightness-0 invert"
                 />
               </div>
               <h3 className="text-lg md:text-xl font-semibold text-white">
-                Müşteri Memnuniyeti
+                Customer Delight
               </h3>
             </div>
           </div>
         </div>
       </section>
+
+      {/* News Section */}
+      <section className="relative py-20 overflow-hidden">
+        {/* Background Image */}
+        <div className="absolute inset-0 bg-gray-200">
+          <Image
+            src="/assets/images/lineartBg.png"
+            alt="News Background"
+            fill
+            className="object-cover opacity-100 filter"
+            quality={80}
+          />
+        </div>
+
+        {/* Content */}
+        <div className="relative z-10 container mx-auto px-4">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-6xl font-bold text-gray-800 mb-4">
+              Latest <span className="text-yellow-500">News</span>
+            </h2>
+            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+              Stay updated with the latest happenings and announcements from
+              DEKO Elektrik.
+            </p>
+          </div>
+
+          {/* News Slider */}
+          <div className="max-w-5xl mx-auto">
+            <NewsSlider newsItems={newsData} />
+          </div>
+          {/* End of News Slider */}
+        </div>
+      </section>
+
+      {/* Mission, Vision, Values Section */}
+      <ExperienceSection />
+
+      {/* Products Section */}
+      <ProductsSection />
     </div>
+  );
+}
+
+// New ProductsSection component
+function ProductsSection() {
+  const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    fetch("/products.json")
+      .then((response) => response.json())
+      .then((data) => setProducts(data))
+      .catch((error) => console.error("Error fetching products:", error));
+  }, []);
+
+  return (
+    <section className="py-16 bg-white">
+      <div className="container mx-auto px-4">
+        <div className="text-center mb-12">
+          <h2 className="text-3xl md:text-5xl font-bold text-gray-800 mb-4">
+            Our Products
+          </h2>
+          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+            Explore our range of high-quality electrical products.
+          </p>
+        </div>
+
+        <div className="grid md:grid-cols-2 gap-8 items-stretch">
+          {products.map((product) => (
+            <div
+              key={product.id}
+              className="flex flex-col md:flex-row bg-slate-100 rounded-lg shadow-lg overflow-hidden"
+            >
+              <div className="relative w-full h-80 md:w-1/2 md:h-96">
+                <Image
+                  src={product.image}
+                  alt={product.name}
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                  quality={90}
+                />
+              </div>
+              <div className="p-6 md:w-1/2 flex flex-col justify-center">
+                <h3 className="text-2xl font-bold text-gray-800 mb-2">
+                  {product.name}
+                </h3>
+                <p className="text-gray-600 mb-4">{product.description}</p>
+                <a
+                  href="#" // Replace with actual product detail link
+                  className="inline-flex items-center text-yellow-500 hover:text-yellow-600 font-semibold group"
+                >
+                  Detail
+                  <span className="ml-2 transition-transform duration-300 ease-in-out group-hover:translate-x-1">
+                    &rarr;
+                  </span>
+                </a>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
   );
 }
