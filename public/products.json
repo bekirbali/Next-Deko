@@ -1,14 +1,30 @@
-[
-  {
-    "id": 1,
-    "name": "MCB",
-    "description": "Miniature Circuit Breaker",
-    "image": "/assets/images/products/mcb.jpg"
-  },
-  {
-    "id": 2,
-    "name": "RCCB",
-    "description": "Residual Current Circuit Breaker",
-    "image": "/assets/images/products/rccb.jpg"
-  }
-]
+{
+  "products": [
+    {
+      "id": 1,
+      "name": "MCB",
+      "description": "Miniature Circuit Breaker",
+      "image": "/assets/images/products/mcb.jpg"
+    },
+    {
+      "id": 2,
+      "name": "RCCB",
+      "description": "Residual Current Circuit Breaker",
+      "image": "/assets/images/products/rccb.jpg"
+    }
+  ],
+  "news": [
+    {
+      "id": 1,
+      "image": "/assets/images/news/news1.jpg",
+      "title": "DEKO was in MEE'22 Dubai Fair",
+      "context": "DEKO was in MEE'22 Dubai Fair. We had a great time and met many new people. We are looking forward to the next fair."
+    },
+    {
+      "id": 2,
+      "image": "/assets/images/news/news2.png",
+      "title": "What is MCB (Miniature Circuit Breaker)?",
+      "context": "What is MCB"
+    }
+  ]
+}

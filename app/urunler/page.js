@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Urunler() {
   const [products, setProducts] = useState([]);
@@ -36,14 +37,16 @@ export default function Urunler() {
               key={product.id}
               className="bg-white shadow-lg rounded-lg overflow-hidden flex flex-col items-center"
             >
-              <div className="relative w-full h-112">
-                <Image
-                  src={product.image}
-                  alt={product.name}
-                  layout="fill"
-                  objectFit="contain" // 'cover' or 'contain' depending on desired image display
-                  className="p-4" // Added padding around the image
-                />
+              <div className="relative w-full h-112 hover:cursor-pointer">
+                <Link href={`/urunler/${product.name.toLowerCase()}`}>
+                  <Image
+                    src={product.image}
+                    alt={product.name}
+                    layout="fill"
+                    objectFit="contain" // 'cover' or 'contain' depending on desired image display
+                    className="p-4" // Added padding around the image
+                  />
+                </Link>
               </div>
               <div className="p-6 text-center">
                 <h3 className="text-xl font-semibold text-gray-800">
@@ -52,6 +55,11 @@ export default function Urunler() {
                 <p className="text-sm text-gray-600 mt-2">
                   {product.description}
                 </p>
+                <Link href={`/urunler/${product.name.toLowerCase()}`}>
+                  <button className="bg-blue-500 text-white px-4 py-2 rounded-md hover:cursor-pointer hover:bg-blue-600 mt-4">
+                    Details
+                  </button>
+                </Link>
               </div>
             </div>
           ))
