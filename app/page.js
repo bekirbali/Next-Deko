@@ -355,7 +355,7 @@ function ProductsSection() {
   useEffect(() => {
     fetch("/products.json")
       .then((response) => response.json())
-      .then((data) => setProducts(data))
+      .then((data) => setProducts(data.products))
       .catch((error) => console.error("Error fetching products:", error));
   }, []);
 

@@ -15,7 +15,7 @@ export default function Urunler() {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
         const data = await response.json();
-        setProducts(data);
+        setProducts(data.products);
       } catch (error) {
         console.error("Failed to fetch products:", error);
         // Optionally, set an error state here to display in the UI
@@ -28,7 +28,7 @@ export default function Urunler() {
   return (
     <div className="container mx-auto px-4 py-8">
       <h1 className="text-4xl font-bold text-center text-gray-800 mb-12">
-        Ürünler
+        Products
       </h1>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-8">
         {products.length > 0 ? (
@@ -38,13 +38,13 @@ export default function Urunler() {
               className="bg-white shadow-lg rounded-lg overflow-hidden flex flex-col items-center"
             >
               <div className="relative w-full h-112 hover:cursor-pointer">
-                <Link href={`/urunler/${product.name.toLowerCase()}`}>
+                <Link href={`/products/${product.name.toLowerCase()}`}>
                   <Image
                     src={product.image}
                     alt={product.name}
                     layout="fill"
-                    objectFit="contain" // 'cover' or 'contain' depending on desired image display
-                    className="p-4" // Added padding around the image
+                    objectFit="contain"
+                    className="p-4"
                   />
                 </Link>
               </div>
@@ -55,7 +55,7 @@ export default function Urunler() {
                 <p className="text-sm text-gray-600 mt-2">
                   {product.description}
                 </p>
-                <Link href={`/urunler/${product.name.toLowerCase()}`}>
+                <Link href={`/products/${product.name.toLowerCase()}`}>
                   <button className="bg-blue-500 text-white px-4 py-2 rounded-md hover:cursor-pointer hover:bg-blue-600 mt-4">
                     Details
                   </button>
@@ -65,7 +65,7 @@ export default function Urunler() {
           ))
         ) : (
           <p className="text-center text-gray-500 col-span-full">
-            Ürünler yükleniyor veya bulunamadı...
+            Products are loading or could not be found
           </p>
         )}
       </div>

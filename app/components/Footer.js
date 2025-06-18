@@ -85,37 +85,37 @@ export default function Footer() {
             {/* Main Navigation Items */}
             <div className="space-y-3">
               <Link
-                href="/kurumsal"
+                href="/corporate"
                 className="block text-gray-300 hover:text-white text-lg transition-colors"
               >
-                Kurumsal
+                Corporate
               </Link>
               <Link
-                href="/destek"
+                href="/support"
                 className="block text-gray-300 hover:text-white text-lg transition-colors"
               >
-                Destek
+                Support
               </Link>
               <Link
-                href="/haber-blog"
+                href="/news-blog"
                 className="block text-gray-300 hover:text-white text-lg transition-colors"
               >
-                Haberler & Blog
+                News & Blog
               </Link>
 
               {/* Products with sub-items */}
               <div>
                 <Link
-                  href="/urunler"
+                  href="/products"
                   className="block text-gray-300 hover:text-white text-lg transition-colors mb-2"
                 >
-                  Ürünler
+                  Products
                 </Link>
                 <ul className="space-y-2 ml-4">
                   <li className="flex items-center">
                     <span className="text-yellow-400 mr-2">➤</span>
                     <Link
-                      href="/urunler/mcb"
+                      href="/products/mcb"
                       className="text-gray-300 hover:text-white transition-colors"
                     >
                       MCB
@@ -124,7 +124,7 @@ export default function Footer() {
                   <li className="flex items-center">
                     <span className="text-yellow-400 mr-2">➤</span>
                     <Link
-                      href="/urunler/rccb"
+                      href="/products/rccb"
                       className="text-gray-300 hover:text-white transition-colors"
                     >
                       RCCB
