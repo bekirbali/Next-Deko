@@ -72,14 +72,14 @@ export default function Navbar() {
                 href="/"
                 className="hover:bg-blue-700 px-3 py-2 rounded-md font-medium transition-colors"
               >
-                Anasayfa
+                Home
               </Link>
 
               <Link
-                href="/kurumsal"
+                href="/corporate"
                 className="hover:bg-blue-700 px-3 py-2 rounded-md font-medium transition-colors"
               >
-                Kurumsal
+                Corporate
               </Link>
 
               {/* Products Dropdown */}
@@ -89,10 +89,10 @@ export default function Navbar() {
                 onMouseLeave={handleMouseLeave}
               >
                 <Link
-                  href="/urunler"
+                  href="/products"
                   className="hover:bg-blue-700 px-3 py-2 rounded-md font-medium transition-colors flex items-center"
                 >
-                  Ürünler
+                  Products
                   <svg
                     className="ml-1 h-4 w-4"
                     fill="none"
@@ -118,13 +118,13 @@ export default function Navbar() {
                     <div className="bg-white text-gray-900 rounded-md shadow-lg">
                       <div className="py-1">
                         <Link
-                          href="/urunler/mcb"
+                          href="/products/mcb"
                           className="block px-4 py-2 hover:bg-gray-100 transition-colors"
                         >
                           MCB
                         </Link>
                         <Link
-                          href="/urunler/rccb"
+                          href="/products/rccb"
                           className="block px-4 py-2 hover:bg-gray-100 transition-colors"
                         >
                           RCCB
@@ -136,24 +136,24 @@ export default function Navbar() {
               </div>
 
               <Link
-                href="/haber-blog"
+                href="/news-blog"
                 className="hover:bg-blue-700 px-3 py-2 rounded-md font-medium transition-colors"
               >
-                Haber & Blog
+                News & Blog
               </Link>
 
               <Link
-                href="/destek"
+                href="/support"
                 className="hover:bg-blue-700 px-3 py-2 rounded-md font-medium transition-colors"
               >
-                Destek
+                Support
               </Link>
 
               <Link
-                href="/iletisim"
+                href="/contact"
                 className="hover:bg-blue-700 px-3 py-2 rounded-md font-medium transition-colors"
               >
-                İletişim
+                Contact
               </Link>
             </div>
           </div>
@@ -199,14 +199,14 @@ export default function Navbar() {
                 className="block hover:bg-blue-700 px-3 py-2 rounded-md text-base font-medium"
                 onClick={closeMobileMenu}
               >
-                Anasayfa
+                Home
               </Link>
               <Link
-                href="/kurumsal"
+                href="/corporate"
                 className="block hover:bg-blue-700 px-3 py-2 rounded-md text-base font-medium"
                 onClick={closeMobileMenu}
               >
-                Kurumsal
+                Corporate
               </Link>
 
               {/* Mobile Products Dropdown Toggle */}
@@ -215,7 +215,7 @@ export default function Navbar() {
                 onClick={() => setIsMobileProductsOpen(!isMobileProductsOpen)}
               >
                 <div className="flex justify-between items-center">
-                  <span>Ürünler</span>
+                  <span>Products</span>
                   <svg
                     className={`ml-1 h-4 w-4 transform transition-transform duration-200 ${
                       isMobileProductsOpen ? "rotate-180" : ""
@@ -238,14 +238,14 @@ export default function Navbar() {
               {isMobileProductsOpen && (
                 <div className="pl-3">
                   <Link
-                    href="/urunler/mcb"
+                    href="/products/mcb"
                     className="block hover:bg-blue-700 px-3 py-2 rounded-md text-base font-medium pl-6"
                     onClick={closeMobileMenu}
                   >
                     MCB
                   </Link>
                   <Link
-                    href="/urunler/rccb"
+                    href="/products/rccb"
                     className="block hover:bg-blue-700 px-3 py-2 rounded-md text-base font-medium pl-6"
                     onClick={closeMobileMenu}
                   >
@@ -255,25 +255,25 @@ export default function Navbar() {
               )}
 
               <Link
-                href="/haber-blog"
+                href="/news-blog"
                 className="block hover:bg-blue-700 px-3 py-2 rounded-md text-base font-medium"
                 onClick={closeMobileMenu}
               >
-                Haber & Blog
+                News & Blog
               </Link>
               <Link
-                href="/destek"
+                href="/support"
                 className="block hover:bg-blue-700 px-3 py-2 rounded-md text-base font-medium"
                 onClick={closeMobileMenu}
               >
-                Destek
+                Support
               </Link>
               <Link
-                href="/iletisim"
+                href="/contact"
                 className="block hover:bg-blue-700 px-3 py-2 rounded-md text-base font-medium"
                 onClick={closeMobileMenu}
               >
-                İletişim
+                Contact
               </Link>
             </div>
           )}
