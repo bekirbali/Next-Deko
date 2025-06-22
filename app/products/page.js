@@ -8,19 +8,39 @@ export default function Urunler() {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
-    async function fetchProducts() {
+    const fetchProducts = async () => {
+      // --- VERCEL DEPLOYMENT NOTE ---
+      // The code is currently set up to fetch from your local backend.
+      // Before deploying to Vercel, comment out the "LOCAL DEVELOPMENT" block
+      // and uncomment the "VERCEL DEPLOYMENT" block below.
+
+      // --- LOCAL DEVELOPMENT (with backend) ---
+      // VERCEL DEPLOYMENT: COMMENT OUT THE BLOCK BELOW
+      try {
+        const backendResponse = await fetch(
+          "http://localhost:8000/api/products/"
+        );
+        const data = await backendResponse.json();
+        setProducts(data.results || []);
+      } catch (error) {
+        console.error("Error fetching products from backend:", error);
+        setProducts([]); // Fallback to empty array on error
+      }
+      // VERCEL DEPLOYMENT: END OF BLOCK TO COMMENT OUT
+
+      /*
+      // --- VERCEL DEPLOYMENT (static JSON) ---
+      // VERCEL DEPLOYMENT: UNCOMMENT THE BLOCK BELOW
       try {
         const response = await fetch("/products.json");
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
-        }
         const data = await response.json();
         setProducts(data.products);
       } catch (error) {
-        console.error("Failed to fetch products:", error);
-        // Optionally, set an error state here to display in the UI
+        console.error("Error fetching products from json:", error);
+        setProducts([]);
       }
-    }
+      */
+    };
 
     fetchProducts();
   }, []);
@@ -31,7 +51,7 @@ export default function Urunler() {
         Products
       </h1>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-8">
-        {products.length > 0 ? (
+        {products && products.length > 0 ? (
           products.map((product) => (
             <div
               key={product.id}

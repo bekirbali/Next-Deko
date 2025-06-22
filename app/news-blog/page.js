@@ -6,9 +6,39 @@ export default function HaberBlog() {
   const [news, setNews] = useState([]);
 
   useEffect(() => {
-    fetch("/products.json")
-      .then((res) => res.json())
-      .then((data) => setNews(data.news || []));
+    const fetchNews = async () => {
+      // --- VERCEL DEPLOYMENT NOTE ---
+      // The code is currently set up to fetch from your local backend.
+      // Before deploying to Vercel, comment out the "LOCAL DEVELOPMENT" block
+      // and uncomment the "VERCEL DEPLOYMENT" block below.
+
+      // --- LOCAL DEVELOPMENT (with backend) ---
+      // VERCEL DEPLOYMENT: COMMENT OUT THE BLOCK BELOW
+      try {
+        const backendResponse = await fetch("http://localhost:8000/api/news/");
+        const data = await backendResponse.json();
+        setNews(data.results || []);
+      } catch (error) {
+        console.error("Error fetching news from backend:", error);
+        setNews([]); // Fallback to empty array on error
+      }
+      // VERCEL DEPLOYMENT: END OF BLOCK TO COMMENT OUT
+
+      /*
+      // --- VERCEL DEPLOYMENT (static JSON) ---
+      // VERCEL DEPLOYMENT: UNCOMMENT THE BLOCK BELOW
+      try {
+        const response = await fetch("/products.json");
+        const data = await response.json();
+        setNews(data.news || []);
+      } catch (error) {
+        console.error("Error fetching news from json:", error);
+        setNews([]);
+      }
+      */
+    };
+
+    fetchNews();
   }, []);
 
   return (

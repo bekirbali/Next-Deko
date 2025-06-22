@@ -48,9 +48,17 @@ const NewsSlider = ({ newsItems }) => {
     }
     .slick-slide > div {
         margin: 0 10px; /* Add some horizontal spacing between slides */
+        height: 100%;
     }
     .slick-list {
         margin: 0 -10px; /* Compensate for slide margin */
+    }
+    .slick-track {
+      display: flex;
+      align-items: stretch;
+    }
+    .slick-slide {
+      height: auto;
     }
   `;
 
