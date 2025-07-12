@@ -8,7 +8,8 @@ import {
   FaFilePdf,
   FaFileImage,
 } from "react-icons/fa";
-import { useState } from "react"; // Import useState
+import { useState, useEffect, Suspense } from "react";
+import { useSearchParams } from "next/navigation";
 
 // Placeholder data for sidebar navigation
 const sidebarNavItems = [
@@ -72,8 +73,16 @@ const cadDrawings = [
   },
 ];
 
-export default function Destek() {
+function SupportContent() {
+  const searchParams = useSearchParams();
+  const tab = searchParams.get("tab");
   const [activeTab, setActiveTab] = useState("CAD Drawings"); // Changed initial state
+
+  useEffect(() => {
+    if (tab && sidebarNavItems.some((item) => item.name === tab)) {
+      setActiveTab(tab);
+    }
+  }, [tab]);
 
   return (
     <div className="container mx-auto px-4 py-8 flex flex-col md:flex-row gap-8">
@@ -218,5 +227,13 @@ export default function Destek() {
         )}
       </main>
     </div>
+  );
+}
+
+export default function Destek() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <SupportContent />
+    </Suspense>
   );
 }

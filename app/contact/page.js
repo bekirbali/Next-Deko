@@ -1,7 +1,59 @@
+"use client";
+import { useState } from "react";
 import { FaTwitter, FaInstagram, FaLinkedin, FaYoutube } from "react-icons/fa";
 import { FiPhone, FiMapPin, FiMail } from "react-icons/fi";
 
 export default function Iletisim() {
+  const [formData, setFormData] = useState({
+    name: "",
+    phone: "",
+    email: "",
+    topic: "",
+    message: "",
+  });
+  const [status, setStatus] = useState("");
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setStatus("Sending...");
+    try {
+      const response = await fetch(
+        "https://developer43.pythonanywhere.com/contact/",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formData),
+        }
+      );
+
+      if (response.ok) {
+        setStatus("Message sent successfully!");
+        setFormData({
+          name: "",
+          phone: "",
+          email: "",
+          topic: "",
+          message: "",
+        });
+      } else {
+        setStatus("Error sending message.");
+      }
+    } catch (error) {
+      console.error("Error:", error);
+      setStatus("Error sending message.");
+    }
+  };
+
   return (
     <div className="bg-slate-100 min-h-screen py-12">
       <div className="container mx-auto px-4">
@@ -11,7 +63,7 @@ export default function Iletisim() {
         <div className="flex flex-col md:flex-row gap-8 bg-white p-8 md:p-12 rounded-lg shadow-xl max-w-5xl mx-auto">
           {/* Form Section */}
           <div className="w-full md:w-2/3">
-            <form className="space-y-6">
+            <form className="space-y-6" onSubmit={handleSubmit}>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
                   <label
@@ -26,6 +78,8 @@ export default function Iletisim() {
                     id="name"
                     placeholder="Name *"
                     required
+                    value={formData.name}
+                    onChange={handleChange}
                     className="mt-1 block w-full px-4 py-3 bg-slate-100 border-transparent rounded-md focus:ring-blue-500 focus:border-blue-500 text-sm"
                   />
                 </div>
@@ -42,6 +96,8 @@ export default function Iletisim() {
                     id="phone"
                     placeholder="Phone *"
                     required
+                    value={formData.phone}
+                    onChange={handleChange}
                     className="mt-1 block w-full px-4 py-3 bg-slate-100 border-transparent rounded-md focus:ring-blue-500 focus:border-blue-500 text-sm"
                   />
                 </div>
@@ -60,6 +116,8 @@ export default function Iletisim() {
                     id="email"
                     placeholder="Email *"
                     required
+                    value={formData.email}
+                    onChange={handleChange}
                     className="mt-1 block w-full px-4 py-3 bg-slate-100 border-transparent rounded-md focus:ring-blue-500 focus:border-blue-500 text-sm"
                   />
                 </div>
@@ -76,6 +134,8 @@ export default function Iletisim() {
                     id="topic"
                     placeholder="Topic *"
                     required
+                    value={formData.topic}
+                    onChange={handleChange}
                     className="mt-1 block w-full px-4 py-3 bg-slate-100 border-transparent rounded-md focus:ring-blue-500 focus:border-blue-500 text-sm"
                   />
                 </div>
@@ -92,6 +152,8 @@ export default function Iletisim() {
                   id="message"
                   rows="6"
                   placeholder="Message"
+                  value={formData.message}
+                  onChange={handleChange}
                   className="mt-1 block w-full px-4 py-3 bg-slate-100 border-transparent rounded-md focus:ring-blue-500 focus:border-blue-500 text-sm"
                 ></textarea>
               </div>
@@ -103,6 +165,7 @@ export default function Iletisim() {
                   Send!
                 </button>
               </div>
+              {status && <p className="text-center mt-4">{status}</p>}
             </form>
           </div>
 
