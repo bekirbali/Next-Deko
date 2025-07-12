@@ -8,7 +8,7 @@ import {
   FaFilePdf,
   FaFileImage,
 } from "react-icons/fa";
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 
 // Placeholder data for sidebar navigation
@@ -73,7 +73,7 @@ const cadDrawings = [
   },
 ];
 
-export default function Destek() {
+function SupportContent() {
   const searchParams = useSearchParams();
   const tab = searchParams.get("tab");
   const [activeTab, setActiveTab] = useState("CAD Drawings"); // Changed initial state
@@ -227,5 +227,13 @@ export default function Destek() {
         )}
       </main>
     </div>
+  );
+}
+
+export default function Destek() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <SupportContent />
+    </Suspense>
   );
 }
