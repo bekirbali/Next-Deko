@@ -47,3 +47,18 @@ body {
 .animation-delay-400 {
   animation-delay: 0.4s;
 }
+
+/* Override background colors from rich text editor content */
+.rich-text-content * {
+  background-color: transparent !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
+
+/* Truncate product description in slider */
+.truncate-description {
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}

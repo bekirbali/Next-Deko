@@ -5,9 +5,11 @@ import NewsSlider from "./components/NewsSlider";
 import ExperienceSection from "./components/ExperienceSection";
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import ProductsSlider from "./components/ProductsSlider";
 
 export default function Home() {
   const [newsData, setNewsData] = useState([]);
+  const [products, setProducts] = useState([]);
 
   useEffect(() => {
     const fetchNews = async () => {
@@ -15,20 +17,22 @@ export default function Home() {
       // This section fetches news from the backend. Comment it out for Vercel deployment.
       // --- LOCAL DEVELOPMENT (with backend) ---
       try {
-        const response = await fetch("http://localhost:8000/api/news/");
+        const response = await fetch(
+          "https://developer43.pythonanywhere.com/api/news/"
+        );
         const data = await response.json();
         const formattedNews = data.results.map((item) => ({
           id: item.id,
-          imageSrc: item.image, // The backend provides a full URL for the image
-          altText: item.title,
-          title: item.title,
+          imageSrc: item.main_image, // The backend provides a full URL for the image
+          altText: item.main_title,
+          title: item.main_title,
           date: new Date(item.created_at).toLocaleDateString("en-US", {
             year: "numeric",
             month: "long",
             day: "numeric",
           }),
-          description: item.context,
-          link: `/haber-blog/${item.id}`,
+          description: item.main_context,
+          link: `/news-blog/${item.id}`,
         }));
         setNewsData(formattedNews);
       } catch (error) {
@@ -38,33 +42,21 @@ export default function Home() {
       // --- END OF LOCAL DEVELOPMENT BLOCK ---
     };
 
-    // --- VERCEL DEPLOYMENT (static hardcoded data) ---
-    // Uncomment the block below for Vercel deployment
-    /*
-    const staticNewsData = [
-      {
-        id: 1,
-        imageSrc: "/assets/images/speciality.jpg",
-        altText: "News 1 Placeholder",
-        title: "Exciting Product Launch Announced",
-        date: "October 26, 2023",
-        description: "We are thrilled to announce the upcoming launch of our new innovative product line...",
-        link: "#",
-      },
-      {
-        id: 2,
-        imageSrc: "/assets/images/production.jpg",
-        altText: "News 2 Placeholder",
-        title: "DEKO Elektrik Expands to New Markets",
-        date: "October 20, 2023",
-        description: "As part of our growth strategy, DEKO Elektrik is proud to announce its expansion...",
-        link: "#",
-      },
-    ];
-    setNewsData(staticNewsData);
-    */
+    const fetchProducts = async () => {
+      try {
+        const backendResponse = await fetch(
+          "https://developer43.pythonanywhere.com/api/products/"
+        );
+        const data = await backendResponse.json();
+        setProducts(data.results || data || []);
+      } catch (error) {
+        console.error("Error fetching products from backend:", error);
+        setProducts([]);
+      }
+    };
 
     fetchNews();
+    fetchProducts();
   }, []);
 
   return (
@@ -379,101 +371,19 @@ export default function Home() {
       <ExperienceSection />
 
       {/* Products Section */}
-      <ProductsSection />
+      <section className="py-16 bg-white">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-5xl font-bold text-gray-800 mb-4">
+              Our Products
+            </h2>
+            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+              Explore our range of high-quality electrical products.
+            </p>
+          </div>
+          <ProductsSlider products={products} />
+        </div>
+      </section>
     </div>
-  );
-}
-
-// New ProductsSection component
-function ProductsSection() {
-  const [products, setProducts] = useState([]);
-
-  useEffect(() => {
-    const fetchProducts = async () => {
-      // --- VERCEL DEPLOYMENT NOTE ---
-      // The code is currently set up to fetch from your local backend.
-      // Before deploying to Vercel, comment out the "LOCAL DEVELOPMENT" block
-      // and uncomment the "VERCEL DEPLOYMENT" block below.
-
-      // --- LOCAL DEVELOPMENT (with backend) ---
-      // VERCEL DEPLOYMENT: COMMENT OUT THE BLOCK BELOW
-      try {
-        const backendResponse = await fetch(
-          "http://localhost:8000/api/products/"
-        );
-        const data = await backendResponse.json();
-        setProducts(data.results || []);
-      } catch (error) {
-        console.error("Error fetching products from backend:", error);
-        setProducts([]); // Fallback to empty array on error
-      }
-      // VERCEL DEPLOYMENT: END OF BLOCK TO COMMENT OUT
-
-      /*
-      // --- VERCEL DEPLOYMENT (static JSON) ---
-      // VERCEL DEPLOYMENT: UNCOMMENT THE BLOCK BELOW
-      try {
-        const response = await fetch("/products.json");
-        const data = await response.json();
-        setProducts(data.products);
-      } catch (error) {
-        console.error("Error fetching products from json:", error);
-        setProducts([]);
-      }
-      */
-    };
-
-    fetchProducts();
-  }, []);
-
-  return (
-    <section className="py-16 bg-white">
-      <div className="container mx-auto px-4">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-5xl font-bold text-gray-800 mb-4">
-            Our Products
-          </h2>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            Explore our range of high-quality electrical products.
-          </p>
-        </div>
-
-        <div className="grid md:grid-cols-2 gap-8 items-stretch">
-          {products &&
-            products.map((product) => (
-              <div
-                key={product.id}
-                className="flex flex-col md:flex-row bg-slate-100 rounded-lg shadow-lg overflow-hidden"
-              >
-                <div className="relative w-full h-80 md:w-1/2 md:h-96">
-                  <Image
-                    src={product.image}
-                    alt={product.name}
-                    fill
-                    className="object-cover"
-                    sizes="(max-width: 768px) 100vw, 50vw"
-                    quality={90}
-                  />
-                </div>
-                <div className="p-6 md:w-1/2 flex flex-col justify-center">
-                  <h3 className="text-2xl font-bold text-gray-800 mb-2">
-                    {product.name}
-                  </h3>
-                  <p className="text-gray-600 mb-4">{product.description}</p>
-                  <Link
-                    href={`/products/${product.name.toLowerCase()}`}
-                    className="inline-flex items-center text-yellow-500 hover:text-yellow-600 font-semibold group"
-                  >
-                    Detail
-                    <span className="ml-2 transition-transform duration-300 ease-in-out group-hover:translate-x-1">
-                      &rarr;
-                    </span>
-                  </Link>
-                </div>
-              </div>
-            ))}
-        </div>
-      </div>
-    </section>
   );
 }

@@ -15,22 +15,22 @@ export default function Urunler() {
       // and uncomment the "VERCEL DEPLOYMENT" block below.
 
       // --- LOCAL DEVELOPMENT (with backend) ---
-      // VERCEL DEPLOYMENT: COMMENT OUT THE BLOCK BELOW
       try {
         const backendResponse = await fetch(
-          "http://localhost:8000/api/products/"
+          "https://developer43.pythonanywhere.com/api/products/"
         );
         const data = await backendResponse.json();
-        setProducts(data.results || []);
+        setProducts(data.results || data || []);
+        console.log(data.results);
       } catch (error) {
         console.error("Error fetching products from backend:", error);
         setProducts([]); // Fallback to empty array on error
       }
       // VERCEL DEPLOYMENT: END OF BLOCK TO COMMENT OUT
 
-      /*
       // --- VERCEL DEPLOYMENT (static JSON) ---
       // VERCEL DEPLOYMENT: UNCOMMENT THE BLOCK BELOW
+      /*
       try {
         const response = await fetch("/products.json");
         const data = await response.json();
@@ -52,30 +52,34 @@ export default function Urunler() {
       </h1>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-8">
         {products && products.length > 0 ? (
-          products.map((product) => (
+          products.map((product, index) => (
             <div
               key={product.id}
               className="bg-white shadow-lg rounded-lg overflow-hidden flex flex-col items-center"
             >
-              <div className="relative w-full h-112 hover:cursor-pointer">
-                <Link href={`/products/${product.name.toLowerCase()}`}>
+              <Link
+                href={`/products/${product.main_title}`}
+                className="relative block w-full h-112 hover:cursor-pointer"
+              >
+                {product.main_image ? (
                   <Image
-                    src={product.image}
-                    alt={product.name}
-                    layout="fill"
-                    objectFit="contain"
-                    className="p-4"
+                    src={product.main_image}
+                    alt={product.main_title}
+                    fill
+                    sizes="(min-width: 768px) 33vw, (min-width: 640px) 50vw, 100vw"
+                    priority={index < 3}
+                    className="object-cover"
                   />
-                </Link>
-              </div>
+                ) : null}
+              </Link>
               <div className="p-6 text-center">
-                <h3 className="text-xl font-semibold text-gray-800">
-                  {product.name}
+                <h3 className="text-xl font-semibold text-[gray-800]">
+                  {product.main_title}
                 </h3>
-                <p className="text-sm text-gray-600 mt-2">
-                  {product.description}
-                </p>
-                <Link href={`/products/${product.name.toLowerCase()}`}>
+                <h4 className="text-lg text-gray-800">
+                  {product?.sub_title || product?.main_title}
+                </h4>
+                <Link href={`/products/${product.main_title}`}>
                   <button className="bg-blue-500 text-white px-4 py-2 rounded-md hover:cursor-pointer hover:bg-blue-600 mt-4">
                     Details
                   </button>

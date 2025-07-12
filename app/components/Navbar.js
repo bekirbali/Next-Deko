@@ -5,6 +5,7 @@ import Image from "next/image";
 import { useState, useRef, useEffect } from "react";
 
 export default function Navbar() {
+  const [products, setProducts] = useState([]);
   const [isProductsOpen, setIsProductsOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isMobileProductsOpen, setIsMobileProductsOpen] = useState(false);
@@ -27,6 +28,23 @@ export default function Navbar() {
   const closeMobileMenu = () => {
     setIsMobileMenuOpen(false);
   };
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const backendResponse = await fetch(
+          "https://developer43.pythonanywhere.com/api/products/"
+        );
+        const data = await backendResponse.json();
+        setProducts(data.results || data || []);
+        console.log(data.results);
+      } catch (error) {
+        console.error("Error fetching products from backend:", error);
+        setProducts([]); // Fallback to empty array on error
+      }
+    };
+    fetchProducts();
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -117,18 +135,15 @@ export default function Navbar() {
                   <div className="absolute left-0 top-full pt-1 w-48 z-10">
                     <div className="bg-white text-gray-900 rounded-md shadow-lg">
                       <div className="py-1">
-                        <Link
-                          href="/products/mcb"
-                          className="block px-4 py-2 hover:bg-gray-100 transition-colors"
-                        >
-                          MCB
-                        </Link>
-                        <Link
-                          href="/products/rccb"
-                          className="block px-4 py-2 hover:bg-gray-100 transition-colors"
-                        >
-                          RCCB
-                        </Link>
+                        {products.map((product) => (
+                          <Link
+                            key={product.id}
+                            href={`/products/${product.main_title}`}
+                            className="block px-4 py-2 hover:bg-gray-100 transition-colors"
+                          >
+                            {product.main_title.toUpperCase()}
+                          </Link>
+                        ))}
                       </div>
                     </div>
                   </div>
@@ -237,20 +252,16 @@ export default function Navbar() {
               {/* Mobile Products Sub-menu */}
               {isMobileProductsOpen && (
                 <div className="pl-3">
-                  <Link
-                    href="/products/mcb"
-                    className="block hover:bg-blue-700 px-3 py-2 rounded-md text-base font-medium pl-6"
-                    onClick={closeMobileMenu}
-                  >
-                    MCB
-                  </Link>
-                  <Link
-                    href="/products/rccb"
-                    className="block hover:bg-blue-700 px-3 py-2 rounded-md text-base font-medium pl-6"
-                    onClick={closeMobileMenu}
-                  >
-                    RCCB
-                  </Link>
+                  {products.map((product) => (
+                    <Link
+                      key={product.id}
+                      href={`/products/${product.main_title}`}
+                      className="block hover:bg-blue-700 px-3 py-2 rounded-md text-base font-medium pl-6"
+                      onClick={closeMobileMenu}
+                    >
+                      {product.main_title.toUpperCase()}
+                    </Link>
+                  ))}
                 </div>
               )}
 
