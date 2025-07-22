@@ -3,6 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useState, useRef, useEffect } from "react";
+import { productsAPI, formatters } from "../lib/api";
 
 export default function Navbar() {
   const [products, setProducts] = useState([]);
@@ -32,12 +33,9 @@ export default function Navbar() {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const backendResponse = await fetch(
-          "https://developer43.pythonanywhere.com/api/products/"
-        );
-        const data = await backendResponse.json();
-        setProducts(data.results || data || []);
-        console.log(data.results);
+        const data = await productsAPI.getAll();
+        setProducts(formatters.extractResults(data));
+        console.log(formatters.extractResults(data));
       } catch (error) {
         console.error("Error fetching products from backend:", error);
         setProducts([]); // Fallback to empty array on error

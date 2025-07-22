@@ -53,6 +53,9 @@ body {
   background-color: transparent !important;
   margin-left: 0 !important;
   margin-right: 0 !important;
+  color: inherit !important;
+  font-family: inherit !important;
+  font-size: inherit !important;
 }
 
 /* Truncate product description in slider */

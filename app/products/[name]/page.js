@@ -1,15 +1,13 @@
 import React from "react";
 import Image from "next/image";
+import { productsAPI } from "../../lib/api";
 
 async function getProduct(name) {
-  const res = await fetch(
-    `https://developer43.pythonanywhere.com/api/products/${name}/`,
-    {
-      cache: "no-store",
-    }
-  );
-  if (!res.ok) throw new Error("Ürün bulunamadı");
-  return res.json();
+  try {
+    return await productsAPI.getByName(name);
+  } catch (error) {
+    throw new Error("Ürün bulunamadı");
+  }
 }
 
 export default async function ProductDetailPage({ params }) {
