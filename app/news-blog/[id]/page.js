@@ -1,31 +1,20 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { newsAPI, formatters } from "../../lib/api";
 
 async function getNews(id) {
-  const res = await fetch(
-    `https://developer43.pythonanywhere.com/api/news/${id}/`,
-    {
-      cache: "no-store",
-    }
-  );
-  if (!res.ok) throw new Error("Haber bulunamadı");
-  return res.json();
+  try {
+    return await newsAPI.getById(id);
+  } catch (error) {
+    throw new Error("Haber bulunamadı");
+  }
 }
 
 async function fetchNews() {
   try {
-    const backendResponse = await fetch(
-      "https://developer43.pythonanywhere.com/api/news/",
-      {
-        cache: "no-store",
-      }
-    );
-    if (!backendResponse.ok) {
-      throw new Error("Failed to fetch news");
-    }
-    const data = await backendResponse.json();
-    return data.results || [];
+    const data = await newsAPI.getAll();
+    return formatters.extractResults(data);
   } catch (error) {
     console.error("Error fetching news from backend:", error);
     return [];
@@ -33,7 +22,8 @@ async function fetchNews() {
 }
 
 export default async function NewsDetailPage({ params }) {
-  const news = await getNews(params.id);
+  const resolvedParams = await params;
+  const news = await getNews(resolvedParams.id);
   const allNews = await fetchNews();
   const lastTwoNews = allNews.slice(0, 2);
   const tags = [
@@ -53,6 +43,7 @@ export default async function NewsDetailPage({ params }) {
           src="/assets/images/main_news.jpg"
           alt="Security Automation Banner"
           fill
+          sizes="100vw"
           priority
           className="object-cover object-center"
         />
@@ -73,9 +64,9 @@ export default async function NewsDetailPage({ params }) {
                 <Image
                   src={news.main_image}
                   alt={news.main_title}
-                  layout="fill"
-                  objectFit="cover"
-                  className="rounded-lg"
+                  fill
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 66vw, 50vw"
+                  className="rounded-lg object-cover"
                 />
               </div>
             )}
@@ -113,9 +104,9 @@ export default async function NewsDetailPage({ params }) {
                       <Image
                         src={image.image}
                         alt={`${news.main_title} ek görsel ${index + 1}`}
-                        layout="fill"
-                        objectFit="cover"
-                        className="rounded-lg"
+                        fill
+                        sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, 33vw"
+                        className="rounded-lg object-cover"
                       />
                     </div>
                   ))}

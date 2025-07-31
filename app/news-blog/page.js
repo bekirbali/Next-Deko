@@ -1,18 +1,10 @@
 import Link from "next/link";
+import { newsAPI, formatters } from "../lib/api";
 
 async function fetchNews() {
   try {
-    const backendResponse = await fetch(
-      "https://developer43.pythonanywhere.com/api/news/",
-      {
-        cache: "no-store",
-      }
-    );
-    if (!backendResponse.ok) {
-      throw new Error("Failed to fetch news");
-    }
-    const data = await backendResponse.json();
-    return data.results || [];
+    const data = await newsAPI.getAll();
+    return formatters.extractResults(data);
   } catch (error) {
     console.error("Error fetching news from backend:", error);
     return [];

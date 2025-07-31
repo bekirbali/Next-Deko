@@ -24,7 +24,7 @@ export default function Footer() {
             <div className="flex space-x-4 justify-center">
               {/* X (Twitter) */}
               <Link
-                href="#"
+                href="https://x.com/dekoelectric"
                 className="w-10 h-10 border border-gray-400 rounded flex items-center justify-center hover:bg-white hover:text-blue-900 transition-colors"
               >
                 <svg
@@ -38,7 +38,7 @@ export default function Footer() {
 
               {/* Instagram */}
               <Link
-                href="#"
+                href="https://instagram.com/dekoelektrik"
                 className="w-10 h-10 border border-gray-400 rounded flex items-center justify-center hover:bg-white hover:text-blue-900 transition-colors"
               >
                 <svg
@@ -52,7 +52,7 @@ export default function Footer() {
 
               {/* LinkedIn */}
               <Link
-                href="#"
+                href="https://linkedin.com/company/deko-elektrik"
                 className="w-10 h-10 border border-gray-400 rounded flex items-center justify-center hover:bg-white hover:text-blue-900 transition-colors"
               >
                 <svg
@@ -66,7 +66,7 @@ export default function Footer() {
 
               {/* YouTube */}
               <Link
-                href="#"
+                href="https://www.youtube.com/@dekoelektrik6601"
                 className="w-10 h-10 border border-gray-400 rounded flex items-center justify-center hover:bg-white hover:text-blue-900 transition-colors"
               >
                 <svg
@@ -138,7 +138,7 @@ export default function Footer() {
           {/* Contact Section */}
           <div className="space-y-6">
             <div>
-              <h3 className="text-xl font-semibold mb-4">İletişim</h3>
+              <h3 className="text-xl font-semibold mb-4">Contact</h3>
               <div className="space-y-3 text-gray-300">
                 <p className="leading-relaxed">
                   Aydınlı SB Mahallesi, İstanbul Endüstri Ve
@@ -162,7 +162,7 @@ export default function Footer() {
 
           {/* Location Section */}
           <div>
-            <h3 className="text-xl font-semibold mb-4">Lokasyon</h3>
+            <h3 className="text-xl font-semibold mb-4">Location</h3>
             <div className="w-full h-48 bg-gray-700 rounded-lg overflow-hidden">
               <iframe
                 src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d12067.60978970832!2d29.379224!3d40.874015!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14cad8e4ce9f4c07%3A0x8857fd8d77c57f75!2sDeko%20Elektrik!5e0!3m2!1str!2str!4v1748638437910!5m2!1str!2str"

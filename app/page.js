@@ -6,6 +6,7 @@ import ExperienceSection from "./components/ExperienceSection";
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import ProductsSlider from "./components/ProductsSlider";
+import { newsAPI, productsAPI, formatters } from "./lib/api";
 
 export default function Home() {
   const [newsData, setNewsData] = useState([]);
@@ -17,23 +18,10 @@ export default function Home() {
       // This section fetches news from the backend. Comment it out for Vercel deployment.
       // --- LOCAL DEVELOPMENT (with backend) ---
       try {
-        const response = await fetch(
-          "https://developer43.pythonanywhere.com/api/news/"
+        const data = await newsAPI.getAll();
+        const formattedNews = formatters.formatNewsForSlider(
+          formatters.extractResults(data)
         );
-        const data = await response.json();
-        const formattedNews = data.results.map((item) => ({
-          id: item.id,
-          imageSrc: item.main_image, // The backend provides a full URL for the image
-          altText: item.main_title,
-          title: item.main_title,
-          date: new Date(item.created_at).toLocaleDateString("en-US", {
-            year: "numeric",
-            month: "long",
-            day: "numeric",
-          }),
-          description: item.main_context,
-          link: `/news-blog/${item.id}`,
-        }));
         setNewsData(formattedNews);
       } catch (error) {
         console.error("Error fetching news from backend:", error);
@@ -44,11 +32,8 @@ export default function Home() {
 
     const fetchProducts = async () => {
       try {
-        const backendResponse = await fetch(
-          "https://developer43.pythonanywhere.com/api/products/"
-        );
-        const data = await backendResponse.json();
-        setProducts(data.results || data || []);
+        const data = await productsAPI.getAll();
+        setProducts(formatters.extractResults(data));
       } catch (error) {
         console.error("Error fetching products from backend:", error);
         setProducts([]);

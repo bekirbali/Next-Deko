@@ -113,14 +113,14 @@ function SupportContent() {
       </aside>
 
       {/* Main Content */}
-      <main className="w-full md:w-3/4">
+      <main className="flex-1">
         <div className="relative w-full h-64 md:h-96 mb-8">
           <Image
             src="/assets/images/support/supportMain.jpg" // Assuming the image is in the public folder
             alt="Support Main Image"
-            layout="fill"
-            objectFit="cover"
-            className="rounded-lg"
+            fill
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 75vw, 66vw"
+            className="rounded-lg object-cover"
           />
           <div className="absolute inset-0 bg-blue-500 opacity-10 rounded-lg"></div>
         </div>

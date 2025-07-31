@@ -1,20 +1,18 @@
 import React from "react";
 import Image from "next/image";
+import { productsAPI } from "../../lib/api";
 
-async function getProduct(name) {
-  const res = await fetch(
-    `https://developer43.pythonanywhere.com/api/products/${name}/`,
-    {
-      cache: "no-store",
-    }
-  );
-  if (!res.ok) throw new Error("Ürün bulunamadı");
-  return res.json();
+async function getProduct(slug) {
+  try {
+    return await productsAPI.getBySlug(slug);
+  } catch (error) {
+    throw new Error("Ürün bulunamadı");
+  }
 }
 
 export default async function ProductDetailPage({ params }) {
-  const { name } = await params;
-  const product = await getProduct(name);
+  const { name: slug } = await params; // name parametresi aslında slug
+  const product = await getProduct(slug);
 
   return (
     <div className="bg-gray-50 text-gray-800">

@@ -2,6 +2,8 @@
 import { useState } from "react";
 import { FaTwitter, FaInstagram, FaLinkedin, FaYoutube } from "react-icons/fa";
 import { FiPhone, FiMapPin, FiMail } from "react-icons/fi";
+import { contactAPI } from "../lib/api";
+import { toast } from "react-toastify";
 
 export default function Iletisim() {
   const [formData, setFormData] = useState({
@@ -11,7 +13,7 @@ export default function Iletisim() {
     topic: "",
     message: "",
   });
-  const [status, setStatus] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -23,34 +25,40 @@ export default function Iletisim() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setStatus("Sending...");
+    setIsSubmitting(true);
+
     try {
-      const response = await fetch(
-        "https://developer43.pythonanywhere.com/contact/",
+      await contactAPI.send(formData);
+      toast.success(
+        "Message sent successfully! We will get back to you as soon as possible.",
         {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(formData),
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
         }
       );
-
-      if (response.ok) {
-        setStatus("Message sent successfully!");
-        setFormData({
-          name: "",
-          phone: "",
-          email: "",
-          topic: "",
-          message: "",
-        });
-      } else {
-        setStatus("Error sending message.");
-      }
+      setFormData({
+        name: "",
+        phone: "",
+        email: "",
+        topic: "",
+        message: "",
+      });
     } catch (error) {
       console.error("Error:", error);
-      setStatus("Error sending message.");
+      toast.error("Error sending message. Please try again.", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+      });
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -160,19 +168,23 @@ export default function Iletisim() {
               <div>
                 <button
                   type="submit"
-                  className="w-full bg-yellow-500 hover:bg-yellow-600 text-white font-semibold py-3 px-4 rounded-md transition duration-150 ease-in-out text-lg"
+                  disabled={isSubmitting}
+                  className={`w-full font-semibold py-3 px-4 rounded-md transition duration-150 ease-in-out text-lg ${
+                    isSubmitting
+                      ? "bg-gray-400 cursor-not-allowed text-gray-600"
+                      : "bg-yellow-500 hover:bg-yellow-600 text-white"
+                  }`}
                 >
-                  Send!
+                  {isSubmitting ? "Sending..." : "Send!"}
                 </button>
               </div>
-              {status && <p className="text-center mt-4">{status}</p>}
             </form>
           </div>
 
           {/* Social Media Section */}
           <div className="w-full md:w-1/3 md:pl-8 pt-8 md:pt-0 md:border-l border-gray-200 flex flex-col justify-start space-y-10">
             <a
-              href="https://twitter.com/dekoelectric"
+              href="https://x.com/dekoelectric"
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center text-gray-700 hover:text-blue-900 group"
@@ -227,7 +239,7 @@ export default function Iletisim() {
               </div>
             </a>
             <a
-              href="https://youtube.com/deko-elektrik"
+              href="https://www.youtube.com/@dekoelektrik6601"
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center text-gray-700 hover:text-blue-900 group"

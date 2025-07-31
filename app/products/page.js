@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { productsAPI, formatters } from "../lib/api";
 
 export default function Urunler() {
   const [products, setProducts] = useState([]);
@@ -16,12 +17,9 @@ export default function Urunler() {
 
       // --- LOCAL DEVELOPMENT (with backend) ---
       try {
-        const backendResponse = await fetch(
-          "https://developer43.pythonanywhere.com/api/products/"
-        );
-        const data = await backendResponse.json();
-        setProducts(data.results || data || []);
-        console.log(data.results);
+        const data = await productsAPI.getAll();
+        setProducts(formatters.extractResults(data));
+        console.log(formatters.extractResults(data));
       } catch (error) {
         console.error("Error fetching products from backend:", error);
         setProducts([]); // Fallback to empty array on error
@@ -58,7 +56,7 @@ export default function Urunler() {
               className="bg-white shadow-lg rounded-lg overflow-hidden flex flex-col items-center"
             >
               <Link
-                href={`/products/${product.main_title}`}
+                href={`/products/${product.slug}`}
                 className="relative block w-full h-112 hover:cursor-pointer"
               >
                 {product.main_image ? (
@@ -79,7 +77,7 @@ export default function Urunler() {
                 <h4 className="text-lg text-gray-800">
                   {product?.sub_title || product?.main_title}
                 </h4>
-                <Link href={`/products/${product.main_title}`}>
+                <Link href={`/products/${product.slug}`}>
                   <button className="bg-blue-500 text-white px-4 py-2 rounded-md hover:cursor-pointer hover:bg-blue-600 mt-4">
                     Details
                   </button>
