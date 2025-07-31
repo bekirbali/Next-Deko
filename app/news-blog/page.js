@@ -51,9 +51,10 @@ export default async function HaberBlog() {
                   <h2 className="text-xl font-semibold mb-2 text-gray-800 text-center">
                     {item.main_title}
                   </h2>
-                  <p className="text-gray-600 text-center mb-4">
-                    {item.main_context}
-                  </p>
+                  <div
+                    className="text-gray-600 text-center mb-4 truncate-news"
+                    dangerouslySetInnerHTML={{ __html: item.main_context }}
+                  />
                 </div>
                 <Link
                   href={`/news-blog/${item.id}`}
