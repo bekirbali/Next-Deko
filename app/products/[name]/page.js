@@ -2,17 +2,17 @@ import React from "react";
 import Image from "next/image";
 import { productsAPI } from "../../lib/api";
 
-async function getProduct(name) {
+async function getProduct(slug) {
   try {
-    return await productsAPI.getByName(name);
+    return await productsAPI.getBySlug(slug);
   } catch (error) {
     throw new Error("Ürün bulunamadı");
   }
 }
 
 export default async function ProductDetailPage({ params }) {
-  const { name } = await params;
-  const product = await getProduct(name);
+  const { name: slug } = await params; // name parametresi aslında slug
+  const product = await getProduct(slug);
 
   return (
     <div className="bg-gray-50 text-gray-800">

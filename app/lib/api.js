@@ -4,7 +4,7 @@ const API_BASE_URL = "https://developer43.pythonanywhere.com";
 // API Endpoints
 const ENDPOINTS = {
   PRODUCTS: "/api/products/",
-  PRODUCT_DETAIL: (name) => `/api/products/${name}/`,
+  PRODUCT_DETAIL: (slug) => `/api/products/${slug}/`,
   NEWS: "/api/news/",
   NEWS_DETAIL: (id) => `/api/news/${id}/`,
   CONTACT: "/contact/",
@@ -54,8 +54,14 @@ export const productsAPI = {
     return await apiRequest(ENDPOINTS.PRODUCTS);
   },
 
-  // Get product by name
+  // Get product by slug
+  getBySlug: async (slug) => {
+    return await apiRequest(ENDPOINTS.PRODUCT_DETAIL(slug));
+  },
+
+  // Legacy method for backward compatibility
   getByName: async (name) => {
+    // This will need to be converted to slug in frontend
     return await apiRequest(ENDPOINTS.PRODUCT_DETAIL(name));
   },
 };

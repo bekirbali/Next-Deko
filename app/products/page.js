@@ -56,7 +56,7 @@ export default function Urunler() {
               className="bg-white shadow-lg rounded-lg overflow-hidden flex flex-col items-center"
             >
               <Link
-                href={`/products/${product.main_title}`}
+                href={`/products/${product.slug}`}
                 className="relative block w-full h-112 hover:cursor-pointer"
               >
                 {product.main_image ? (
@@ -77,7 +77,7 @@ export default function Urunler() {
                 <h4 className="text-lg text-gray-800">
                   {product?.sub_title || product?.main_title}
                 </h4>
-                <Link href={`/products/${product.main_title}`}>
+                <Link href={`/products/${product.slug}`}>
                   <button className="bg-blue-500 text-white px-4 py-2 rounded-md hover:cursor-pointer hover:bg-blue-600 mt-4">
                     Details
                   </button>
