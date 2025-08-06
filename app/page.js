@@ -113,7 +113,7 @@ export default function Home() {
               className="relative w-full"
               style={{ paddingBottom: "56.25%" /* 16:9 aspect ratio */ }}
             >
-              <iframe
+              {/* <iframe
                 className="absolute inset-0 w-full h-full rounded-lg shadow-xl"
                 src="https://www.youtube.com/embed/N7ySbuZW5uk"
                 title="DEKO Electrics - The Rising Star of Turkey in LV Industry"
@@ -121,6 +121,16 @@ export default function Home() {
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                 referrerPolicy="strict-origin-when-cross-origin"
                 allowFullScreen
+              ></iframe> */}
+              <iframe
+                className="absolute inset-0 w-full h-full rounded-lg shadow-xl"
+                src="https://www.youtube.com/embed/N7ySbuZW5uk?rel=0&modestbranding=1"
+                title="DEKO Electrics - The Rising Star of Turkey in LV Industry"
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerPolicy="strict-origin-when-cross-origin"
+                allowFullScreen
+                loading="lazy"
               ></iframe>
             </div>
           </div>

@@ -183,7 +183,11 @@ export default function Footer() {
         <div className="container mx-auto px-6">
           <p className="text-center text-gray-400 text-sm">
             Copyright © 2025 Deko Elektrik - Created by{" "}
-            <span className="text-white font-semibold">Bekir BALI</span>
+            <Link href="https://bekirbali.vercel.app/" target="_blank">
+              <span className="text-white font-semibold">
+                Software Services
+              </span>
+            </Link>
           </p>
         </div>
       </div>
