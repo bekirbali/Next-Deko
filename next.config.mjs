@@ -35,7 +35,7 @@ const nextConfig = {
               "font-src 'self' https://fonts.gstatic.com",
               "img-src 'self' data: blob: https: http://localhost:8000 http://127.0.0.1:8000 https://developer43.pythonanywhere.com https://maps.googleapis.com https://maps.gstatic.com *.googleapis.com *.gstatic.com",
               "connect-src 'self' http://localhost:8000 http://127.0.0.1:8000 https://developer43.pythonanywhere.com https://maps.googleapis.com https://maps.gstatic.com",
-              "frame-src 'self' https://www.google.com https://maps.google.com",
+              "frame-src 'self' https://www.google.com https://maps.google.com https://www.youtube.com https://youtube.com",
               "object-src 'none'",
               "base-uri 'self'",
               "form-action 'self'",
