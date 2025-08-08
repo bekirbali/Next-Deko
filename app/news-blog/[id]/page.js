@@ -97,17 +97,25 @@ export default async function NewsDetailPage({ params }) {
 
             {news.additional_images && news.additional_images.length > 0 && (
               <div>
-                <h3 className="text-3xl font-bold mb-4">Ek Görseller</h3>
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
                   {news.additional_images.map((image, index) => (
-                    <div key={index} className="relative w-full h-64">
-                      <Image
-                        src={image.image}
-                        alt={`${news.main_title} ek görsel ${index + 1}`}
-                        fill
-                        sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, 33vw"
-                        className="rounded-lg object-cover"
-                      />
+                    <div key={index} className="flex flex-col">
+                      <div className="relative w-full h-64">
+                        <Image
+                          src={image.image}
+                          alt={`${news.main_title} ek görsel ${index + 1}`}
+                          fill
+                          sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, 33vw"
+                          className="rounded-lg object-cover"
+                        />
+                      </div>
+                      {image.title && (
+                        <div className="mt-2">
+                          <h4 className="text-gray-700 text-sm font-medium">
+                            {image.title}
+                          </h4>
+                        </div>
+                      )}
                     </div>
                   ))}
                 </div>

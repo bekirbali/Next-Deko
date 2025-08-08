@@ -85,16 +85,24 @@ export default async function ProductDetailPage({ params }) {
               </h1>
               <h2 className="text-xl font-bold mb-8">Technical Data</h2>
             </div>
-            <div className="max-w-3xl mx-auto flex flex-col justify-center items-center">
+            <div className="max-w-3xl mx-auto flex flex-col justify-center items-center gap-8">
               {product.additional_images.map((image, index) => (
-                <Image
-                  key={index}
-                  src={image.image}
-                  alt={`${product.main_title} additional image ${index + 1}`}
-                  width={800}
-                  height={800}
-                  className="object-contain rounded"
-                />
+                <div key={index} className="w-full flex flex-col items-center">
+                  <Image
+                    src={image.image}
+                    alt={`${product.main_title} additional image ${index + 1}`}
+                    width={800}
+                    height={800}
+                    className="object-contain rounded shadow-lg"
+                  />
+                  {image.description && (
+                    <div className="mt-4 w-full text-left">
+                      <p className="text-gray-700 text-sm">
+                        {image.description}
+                      </p>
+                    </div>
+                  )}
+                </div>
               ))}
             </div>
           </div>
