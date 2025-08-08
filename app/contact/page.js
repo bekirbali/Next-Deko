@@ -17,10 +17,21 @@ export default function Iletisim() {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
+
+    // Telefon numarası alanı için sadece rakam kontrolü
+    if (name === "phone") {
+      // Sadece rakamları kabul et (0-9)
+      const numericValue = value.replace(/[^0-9]/g, "");
+      setFormData((prevData) => ({
+        ...prevData,
+        [name]: numericValue,
+      }));
+    } else {
+      setFormData((prevData) => ({
+        ...prevData,
+        [name]: value,
+      }));
+    }
   };
 
   const handleSubmit = async (e) => {
