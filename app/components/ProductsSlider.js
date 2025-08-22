@@ -62,6 +62,54 @@ const ProductsSlider = ({ products }) => {
     }
   `;
 
+  const PrevArrow = ({ onClick }) => (
+    <button
+      onClick={onClick}
+      className="absolute left-4 top-1/2 transform -translate-x-[80px] -translate-y-1/2 z-30 bg-[#555353] hover:bg-[#747474] text-white p-3 rounded-full transition-colors duration-300 group"
+      aria-label="Previous slide"
+    >
+      <svg
+        className="w-6 h-6"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+      >
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth={2}
+          d="M15 19l-7-7 7-7"
+        />
+      </svg>
+    </button>
+  );
+
+  const NextArrow = ({ onClick }) => (
+    <button
+      onClick={onClick}
+      className="absolute right-4 top-1/2 transform translate-x-[80px] -translate-y-1/2 z-30 bg-[#555353] hover:bg-[#747474] text-white p-3 rounded-full transition-colors duration-300 group"
+      aria-label="Next slide"
+    >
+      <svg
+        className="w-6 h-6"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+      >
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth={2}
+          d="M9 5l7 7-7 7"
+        />
+      </svg>
+    </button>
+  );
+
+  // Update settings to use custom arrows
+  settings.prevArrow = <PrevArrow />;
+  settings.nextArrow = <NextArrow />;
+
   if (!products || products.length === 0) {
     return <p>No products available at the moment.</p>;
   }

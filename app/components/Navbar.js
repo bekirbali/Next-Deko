@@ -61,7 +61,7 @@ export default function Navbar() {
 
   return (
     <nav
-      className={`text-white shadow-lg navbar-lato sticky top-0 z-50 transition-colors duration-300 ${
+      className={`text-white shadow-lg navbar-inter sticky top-0 z-50 transition-colors duration-300 ${
         isScrolled ? "bg-[#0A2562]/90" : "bg-[#0A2562]"
       }`}
     >
@@ -131,13 +131,21 @@ export default function Navbar() {
 
                 {isProductsOpen && (
                   <div className="absolute left-0 top-full pt-1 w-48 z-10">
-                    <div className="bg-white text-gray-900 rounded-md shadow-lg">
+                    <div
+                      className="bg-white/95 backdrop-blur-sm text-gray-900 rounded-lg shadow-2xl border border-gray-100 transform transition-all duration-300 ease-out origin-top"
+                      style={{
+                        animation: "slideInFromBottom 0.3s ease-out forwards",
+                      }}
+                    >
                       <div className="py-1">
-                        {products.map((product) => (
+                        {products.map((product, index) => (
                           <Link
                             key={product.id}
-                            href={`/products/${product.main_title}`}
-                            className="block px-4 py-2 hover:bg-gray-100 transition-colors"
+                            href={`/products/${product.slug}`}
+                            className="block px-4 py-3 hover:bg-blue-50 hover:text-blue-700 transition-all duration-200 ease-in-out transform hover:translate-x-1 hover:shadow-sm dropdown-item-animate border-l-2 border-transparent hover:border-blue-500"
+                            style={{
+                              animationDelay: `${index * 0.08}s`,
+                            }}
                           >
                             {product.main_title.toUpperCase()}
                           </Link>
