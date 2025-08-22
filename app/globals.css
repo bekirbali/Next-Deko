@@ -86,7 +86,16 @@ body {
   margin-right: 0 !important;
   color: inherit !important;
   font-family: inherit !important;
-  font-size: inherit !important;
+}
+
+/* Allow rich text heading styles to preserve their font-size */
+.rich-text-content h1,
+.rich-text-content h2,
+.rich-text-content h3,
+.rich-text-content h4,
+.rich-text-content h5,
+.rich-text-content h6 {
+  font-size: revert !important;
 }
 
 /* Truncate product description in slider */
