@@ -26,11 +26,11 @@ export default async function HaberBlog() {
   return (
     <div className="container mx-auto px-4 py-8">
       <h1 className="text-4xl font-bold text-center text-gray-800 mb-4">
-        Haber & Blog
+        News & Blog
       </h1>
       <div className="text-center mb-10">
         <p className="text-lg text-gray-600">
-          Deko Elektrik haberleri, blog yazıları ve sektör güncellemeleri.
+          Deko Electric news, blog articles and industry updates.
         </p>
       </div>
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
@@ -90,6 +90,7 @@ export default async function HaberBlog() {
                         day: "2-digit",
                         month: "long",
                         year: "numeric",
+                        locale: "en-US",
                       })}
                     </p>
                     <h3 className="font-semibold text-gray-800">

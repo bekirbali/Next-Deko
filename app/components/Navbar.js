@@ -142,7 +142,7 @@ export default function Navbar() {
                           <Link
                             key={product.id}
                             href={`/products/${product.slug}`}
-                            className="block px-4 py-3 hover:bg-blue-50 hover:text-blue-700 transition-all duration-200 ease-in-out transform hover:translate-x-1 hover:shadow-sm dropdown-item-animate border-l-2 border-transparent hover:border-blue-500"
+                            className="block px-4 py-3 hover:bg-blue-50 hover:text-blue-700 transition-all duration-200 ease-in-out transform hover:shadow-sm dropdown-item-animate border-l-2 border-transparent hover:border-blue-500"
                             style={{
                               animationDelay: `${index * 0.08}s`,
                             }}
