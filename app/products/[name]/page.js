@@ -31,7 +31,7 @@ export default async function ProductDetailPage({ params }) {
         ></div>
         <div className="z-10 text-center">
           <h1 className="text-4xl md:text-5xl font-bold text-white">
-            Products
+            {product.main_title.toUpperCase()}
           </h1>
         </div>
       </div>

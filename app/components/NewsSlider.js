@@ -16,6 +16,7 @@ const NewsSlider = ({ newsItems }) => {
     autoplay: true,
     autoplaySpeed: 5000,
     pauseOnHover: true,
+    arrows: true,
     responsive: [
       {
         breakpoint: 1024, // Medium devices (tablets, less than 1024px)
@@ -29,6 +30,7 @@ const NewsSlider = ({ newsItems }) => {
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
+          arrows: false,
         },
       },
     ],
@@ -62,6 +64,54 @@ const NewsSlider = ({ newsItems }) => {
     }
   `;
 
+  const PrevArrow = ({ onClick }) => (
+    <button
+      onClick={onClick}
+      className="absolute left-4 top-1/2 transform -translate-x-[80px] -translate-y-1/2 z-30 bg-[#555353] hover:bg-[#747474] text-white p-3 rounded-full transition-colors duration-300 group"
+      aria-label="Previous slide"
+    >
+      <svg
+        className="w-6 h-6"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+      >
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth={2}
+          d="M15 19l-7-7 7-7"
+        />
+      </svg>
+    </button>
+  );
+
+  const NextArrow = ({ onClick }) => (
+    <button
+      onClick={onClick}
+      className="absolute right-4 top-1/2 transform translate-x-[80px] -translate-y-1/2 z-30 bg-[#555353] hover:bg-[#747474] text-white p-3 rounded-full transition-colors duration-300 group"
+      aria-label="Next slide"
+    >
+      <svg
+        className="w-6 h-6"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+      >
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth={2}
+          d="M9 5l7 7-7 7"
+        />
+      </svg>
+    </button>
+  );
+
+  // Update settings to use custom arrows
+  settings.prevArrow = <PrevArrow />;
+  settings.nextArrow = <NextArrow />;
+
   if (!newsItems || newsItems.length === 0) {
     return <p>No news available at the moment.</p>;
   }
@@ -92,11 +142,10 @@ const NewsSlider = ({ newsItems }) => {
                 {item.title}
               </h3>
               <p className="text-gray-600 mb-1 text-sm">{item.date}</p>
-              <p className="text-gray-700 leading-relaxed mb-4 flex-grow">
-                {" "}
-                {/* Added flex-grow */}
-                {item.description}
-              </p>
+              <div
+                className="text-gray-600 text-left mb-4 truncate-news"
+                dangerouslySetInnerHTML={{ __html: item.description }}
+              />
               <a
                 href={item.link}
                 className="text-yellow-500 hover:text-yellow-600 font-semibold mt-auto inline-block" /* Added mt-auto */
