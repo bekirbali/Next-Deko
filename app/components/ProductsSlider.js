@@ -144,7 +144,7 @@ const ProductsSlider = ({ products }) => {
                   dangerouslySetInnerHTML={{ __html: product.main_context }}
                 />
                 <Link
-                  href={`/products/${product.main_title}`}
+                  href={`/products/${product.slug}`}
                   className="inline-flex items-center text-yellow-500 hover:text-yellow-600 font-semibold group mt-auto"
                 >
                   Details

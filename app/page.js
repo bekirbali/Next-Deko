@@ -49,6 +49,21 @@ export default function Home() {
       {/* Slider at the top */}
       <HeroSlider />
 
+      {/* Products Section */}
+      <section className="py-16 bg-white">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-5xl font-bold text-gray-800 mb-4">
+              Our Products
+            </h2>
+            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+              Explore our range of high-quality electrical products.
+            </p>
+          </div>
+          <ProductsSlider products={products} />
+        </div>
+      </section>
+
       {/* Specialty Section */}
       <section className="py-12 bg-gray-50">
         <div className="container mx-auto px-4">
@@ -364,21 +379,6 @@ export default function Home() {
 
       {/* Mission, Vision, Values Section */}
       <ExperienceSection />
-
-      {/* Products Section */}
-      <section className="py-16 bg-white">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-5xl font-bold text-gray-800 mb-4">
-              Our Products
-            </h2>
-            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              Explore our range of high-quality electrical products.
-            </p>
-          </div>
-          <ProductsSlider products={products} />
-        </div>
-      </section>
     </div>
   );
 }
