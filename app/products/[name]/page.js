@@ -76,6 +76,79 @@ export default async function ProductDetailPage({ params }) {
           </div>
         </div>
 
+        {/* Documents Section */}
+        {product.documents && product.documents.length > 0 && (
+          <div className="max-w-7xl mx-auto p-6 mb-8">
+            <div className="max-w-3xl mx-auto">
+              <h2 className="text-2xl font-bold mb-6 text-center">
+                Documents & Resources
+              </h2>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {product.documents.map((document, index) => (
+                  <div
+                    key={index}
+                    className="bg-white border border-gray-200 rounded-lg p-4 shadow-sm hover:shadow-md transition-shadow"
+                  >
+                    <div className="flex items-center gap-3">
+                      {/* PDF Icon */}
+                      <div className="flex-shrink-0">
+                        <svg
+                          className="w-8 h-8 text-red-600"
+                          fill="currentColor"
+                          viewBox="0 0 20 20"
+                        >
+                          <path
+                            fillRule="evenodd"
+                            d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4zm2 6a1 1 0 011-1h6a1 1 0 110 2H7a1 1 0 01-1-1zm1 3a1 1 0 100 2h6a1 1 0 100-2H7z"
+                            clipRule="evenodd"
+                          />
+                        </svg>
+                      </div>
+
+                      {/* Document Info */}
+                      <div className="flex-grow">
+                        <h3 className="font-semibold text-gray-900">
+                          {document.title || "Document"}
+                        </h3>
+                        {document.description && (
+                          <p className="text-sm text-gray-600 mt-1">
+                            {document.description}
+                          </p>
+                        )}
+                      </div>
+
+                      {/* Download Button */}
+                      <div className="flex-shrink-0">
+                        <a
+                          href={document.document}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center px-3 py-2 text-sm font-medium text-white bg-blue-600 rounded-md hover:bg-blue-700 transition-colors"
+                        >
+                          <svg
+                            className="w-4 h-4 mr-1"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2}
+                              d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                            />
+                          </svg>
+                          Download
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        )}
+
         {/* Additional Images Section */}
         {product.additional_images && product.additional_images.length > 0 && (
           <div className="max-w-7xl mx-auto p-6">

@@ -86,11 +86,10 @@ export default async function HaberBlog() {
                   />
                   <div>
                     <p className="text-sm text-gray-500">
-                      {new Date(item.created_at).toLocaleDateString("tr-TR", {
+                      {new Date(item.created_at).toLocaleDateString("en-US", {
                         day: "2-digit",
                         month: "long",
                         year: "numeric",
-                        locale: "en-US",
                       })}
                     </p>
                     <h3 className="font-semibold text-gray-800">

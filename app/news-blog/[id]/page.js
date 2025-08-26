@@ -60,13 +60,14 @@ export default async function NewsDetailPage({ params }) {
           {/* Left side - News Content */}
           <div className="lg:col-span-2">
             {news.main_image && (
-              <div className="relative w-full h-96 mb-4">
+              <div className="relative w-full mb-4">
                 <Image
                   src={news.main_image}
                   alt={news.main_title}
-                  fill
+                  width={800}
+                  height={600}
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 66vw, 50vw"
-                  className="rounded-lg object-cover"
+                  className="rounded-lg object-contain w-full h-auto"
                 />
               </div>
             )}

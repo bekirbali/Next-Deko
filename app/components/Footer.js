@@ -102,36 +102,18 @@ export default function Footer() {
               >
                 News & Blog
               </Link>
-
-              {/* Products with sub-items */}
-              <div>
-                <Link
-                  href="/products"
-                  className="block text-gray-300 hover:text-white text-lg transition-colors mb-2"
-                >
-                  Products
-                </Link>
-                <ul className="space-y-2 ml-4">
-                  <li className="flex items-center">
-                    <span className="text-yellow-400 mr-2">➤</span>
-                    <Link
-                      href="/products/mcb"
-                      className="text-gray-300 hover:text-white transition-colors"
-                    >
-                      MCB
-                    </Link>
-                  </li>
-                  <li className="flex items-center">
-                    <span className="text-yellow-400 mr-2">➤</span>
-                    <Link
-                      href="/products/rccb"
-                      className="text-gray-300 hover:text-white transition-colors"
-                    >
-                      RCCB
-                    </Link>
-                  </li>
-                </ul>
-              </div>
+              <Link
+                href="/products"
+                className="block text-gray-300 hover:text-white text-lg transition-colors mb-2"
+              >
+                Products
+              </Link>
+              <Link
+                href="/contact"
+                className="block text-gray-300 hover:text-white text-lg transition-colors mb-2"
+              >
+                Contact
+              </Link>
             </div>
           </div>
 
