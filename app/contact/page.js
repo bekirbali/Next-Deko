@@ -4,6 +4,7 @@ import { FaTwitter, FaInstagram, FaLinkedin, FaYoutube } from "react-icons/fa";
 import { FiPhone, FiMapPin, FiMail } from "react-icons/fi";
 import { contactAPI } from "../lib/api";
 import { toast } from "react-toastify";
+import ProtectedEmail from "../components/ProtectedEmail";
 
 export default function Iletisim() {
   const [formData, setFormData] = useState({
@@ -306,9 +307,25 @@ export default function Iletisim() {
               <h3 className="text-xl font-semibold text-blue-900 mb-1">
                 Email
               </h3>
-              <p className="text-gray-600">deko@dekoelektrik.com.tr</p>
-              <p className="text-gray-600">sales@dekoelektrik.com.tr</p>
-              <p className="text-gray-600">purchasing@dekoelektrik.com.tr</p>
+              <div className="space-y-1">
+                <ProtectedEmail
+                  encodedEmail="ZGVrb0BkZWtvZWxla3RyaWsuY29tLnRy"
+                  className="text-gray-600 hover:text-blue-900"
+                  method="css"
+                />
+                <br />
+                <ProtectedEmail
+                  encodedEmail="c2FsZXNAZGVrb2VsZWt0cmlrLmNvbS50cg=="
+                  className="text-gray-600 hover:text-blue-900"
+                  method="css"
+                />
+                <br />
+                <ProtectedEmail
+                  encodedEmail="cHVyY2hhc2luZ0BkZWtvZWxla3RyaWsuY29tLnRy"
+                  className="text-gray-600 hover:text-blue-900"
+                  method="css"
+                />
+              </div>
             </div>
           </div>
         </div>

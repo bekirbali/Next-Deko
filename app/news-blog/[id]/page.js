@@ -5,7 +5,7 @@ import { newsAPI, formatters } from "../../lib/api";
 
 async function getNews(id) {
   try {
-    return await newsAPI.getById(id);
+    return await newsAPI.getById(id, "force-cache");
   } catch (error) {
     throw new Error("Haber bulunamadı");
   }
@@ -13,10 +13,28 @@ async function getNews(id) {
 
 async function fetchNews() {
   try {
-    const data = await newsAPI.getAll();
+    const data = await newsAPI.getAll("force-cache");
     return formatters.extractResults(data);
   } catch (error) {
     console.error("Error fetching news from backend:", error);
+    return [];
+  }
+}
+
+// Enable ISR (Incremental Static Regeneration)
+export const revalidate = 3600; // Revalidate every hour
+
+// For dynamic routes, we need to define generateStaticParams
+export async function generateStaticParams() {
+  try {
+    const data = await newsAPI.getAll("force-cache");
+    const news = formatters.extractResults(data);
+
+    return news.map((item) => ({
+      id: item.id.toString(),
+    }));
+  } catch (error) {
+    console.error("Error generating static params:", error);
     return [];
   }
 }

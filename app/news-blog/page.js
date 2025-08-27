@@ -3,13 +3,17 @@ import { newsAPI, formatters } from "../lib/api";
 
 async function fetchNews() {
   try {
-    const data = await newsAPI.getAll();
+    // Use cache with revalidate for static generation
+    const data = await newsAPI.getAll("force-cache");
     return formatters.extractResults(data);
   } catch (error) {
     console.error("Error fetching news from backend:", error);
     return [];
   }
 }
+
+// Enable ISR (Incremental Static Regeneration)
+export const revalidate = 3600; // Revalidate every hour
 
 export default async function HaberBlog() {
   const news = await fetchNews();

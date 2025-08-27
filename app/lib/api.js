@@ -70,17 +70,31 @@ export const productsAPI = {
 // News API
 export const newsAPI = {
   // Get all news
-  getAll: async (cacheOption = "no-store") => {
-    return await apiRequest(ENDPOINTS.NEWS, {
+  getAll: async (cacheOption = "force-cache") => {
+    const fetchOptions = {
       cache: cacheOption,
-    });
+    };
+
+    // For ISR support, add revalidate option for cache
+    if (cacheOption === "force-cache") {
+      fetchOptions.next = { revalidate: 3600 }; // 1 hour
+    }
+
+    return await apiRequest(ENDPOINTS.NEWS, fetchOptions);
   },
 
   // Get news by ID
-  getById: async (id, cacheOption = "no-store") => {
-    return await apiRequest(ENDPOINTS.NEWS_DETAIL(id), {
+  getById: async (id, cacheOption = "force-cache") => {
+    const fetchOptions = {
       cache: cacheOption,
-    });
+    };
+
+    // For ISR support, add revalidate option for cache
+    if (cacheOption === "force-cache") {
+      fetchOptions.next = { revalidate: 3600 }; // 1 hour
+    }
+
+    return await apiRequest(ENDPOINTS.NEWS_DETAIL(id), fetchOptions);
   },
 };
 
