@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
+import ProtectedEmail from "./ProtectedEmail";
 
 export default function Footer() {
   return (
@@ -131,12 +132,11 @@ export default function Footer() {
                 </p>
                 <p className="text-gray-300">+90 216 208 92 03</p>
                 <p>
-                  <Link
-                    href="mailto:deko@dekoelektrik.com.tr"
+                  <ProtectedEmail
+                    encodedEmail="ZGVrb0BkZWtvZWxla3RyaWsuY29tLnRy"
                     className="hover:text-white transition-colors"
-                  >
-                    deko@dekoelektrik.com.tr
-                  </Link>
+                    method="css"
+                  />
                 </p>
               </div>
             </div>
