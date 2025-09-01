@@ -72,7 +72,7 @@ export default function Home() {
             <div className="relative">
               <div className="relative h-[300px] md:h-[400px] rounded-lg overflow-hidden shadow-xl">
                 <Image
-                  src="/assets/images/speciality.jpg"
+                  src="/assets/images/dekoprofessional.jpg"
                   alt="Deko Elektrik Uzmanlık Alanları"
                   fill
                   className="object-cover"

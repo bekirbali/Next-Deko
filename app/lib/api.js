@@ -38,27 +38,10 @@ async function apiRequest(endpoint, options = {}) {
     const response = await fetch(url, config);
 
     if (!response.ok) {
-      const errorBody = await response.text();
-      let details = errorBody;
-      try {
-        // Try to parse as JSON for more structured error info
-        details = JSON.stringify(JSON.parse(errorBody));
-      } catch (e) {
-        // Not JSON, use the raw text
-      }
-      throw new Error(
-        `HTTP error! status: ${response.status}. Details: ${details}`
-      );
+      throw new Error(`HTTP error! status: ${response.status}`);
     }
 
-    // Try to parse response as JSON, with a fallback for empty responses
-    const responseText = await response.text();
-    try {
-      return JSON.parse(responseText);
-    } catch (e) {
-      // Handle cases where response is not a valid JSON (e.g., just "OK")
-      return responseText;
-    }
+    return await response.json();
   } catch (error) {
     console.error(`API request failed for ${endpoint}:`, error);
     throw error;
