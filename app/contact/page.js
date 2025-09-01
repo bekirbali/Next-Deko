@@ -61,9 +61,9 @@ export default function Iletisim() {
       });
     } catch (error) {
       console.error("Error:", error);
-      toast.error("Error sending message. Please try again.", {
+      toast.error(`Error sending message: ${error.message}`, {
         position: "top-right",
-        autoClose: 5000,
+        autoClose: 8000,
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,

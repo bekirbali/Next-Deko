@@ -61,7 +61,7 @@ const ProtectedEmail = ({
 
   if (method === "css") {
     return (
-      <div className="inline-flex items-center">
+      <span className="inline-flex items-center">
         {showIcon && (
           <svg
             className="w-5 h-5 text-red-300 flex-shrink-0 mr-3"
@@ -85,13 +85,13 @@ const ProtectedEmail = ({
         >
           {isClient ? getReversedEmail() : email.split("").reverse().join("")}
         </a>
-      </div>
+      </span>
     );
   }
 
   if (method === "unicode") {
     return (
-      <div className="inline-flex items-center">
+      <span className="inline-flex items-center">
         {showIcon && (
           <svg
             className="w-5 h-5 text-red-300 flex-shrink-0 mr-3"
@@ -111,14 +111,14 @@ const ProtectedEmail = ({
             __html: isClient ? getUnicodeEmail() : email,
           }}
         />
-      </div>
+      </span>
     );
   }
 
   if (method === "pieces") {
     const pieces = getEmailPieces();
     return (
-      <div className="inline-flex items-center">
+      <span className="inline-flex items-center">
         {showIcon && (
           <svg
             className="w-5 h-5 text-red-300 flex-shrink-0 mr-3"
@@ -145,13 +145,13 @@ const ProtectedEmail = ({
             email
           )}
         </a>
-      </div>
+      </span>
     );
   }
 
   // Fallback - normal görünüm
   return (
-    <div className="inline-flex items-center">
+    <span className="inline-flex items-center">
       {showIcon && (
         <svg
           className="w-5 h-5 text-red-300 flex-shrink-0 mr-3"
@@ -170,7 +170,7 @@ const ProtectedEmail = ({
       >
         {isClient ? email : email}
       </a>
-    </div>
+    </span>
   );
 };
 

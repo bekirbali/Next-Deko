@@ -35,7 +35,6 @@ export default function Navbar() {
       try {
         const data = await productsAPI.getAll();
         setProducts(formatters.extractResults(data));
-        console.log(formatters.extractResults(data));
       } catch (error) {
         console.error("Error fetching products from backend:", error);
         setProducts([]); // Fallback to empty array on error
