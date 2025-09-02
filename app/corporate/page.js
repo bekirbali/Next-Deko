@@ -15,7 +15,7 @@ export default function Kurumsal() {
           priority
         />
         <div className="relative z-10 text-center text-white">
-          <h1 className="text-5xl font-bold mb-4">Kurumsal</h1>
+          <h1 className="text-5xl font-bold mb-4">Corporate</h1>
         </div>
       </div>
 
