@@ -260,7 +260,7 @@ export default function Navbar() {
                   {products.map((product) => (
                     <Link
                       key={product.id}
-                      href={`/products/${product.main_title}`}
+                      href={`/products/${product.slug}`}
                       className="block hover:bg-blue-700 px-3 py-2 rounded-md text-base font-medium pl-6"
                       onClick={closeMobileMenu}
                     >
